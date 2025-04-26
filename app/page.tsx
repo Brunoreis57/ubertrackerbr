@@ -127,7 +127,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4 py-6 sm:py-8 max-w-6xl bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-      <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-6">Dashboard</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold text-white mb-6">Dashboard</h1>
       
       {/* Cards de navegação móvel */}
       <div className="mb-8">
@@ -135,12 +135,12 @@ export default function Home() {
       </div>
 
       {!configVeiculo && (
-        <div className="mb-6 p-4 bg-yellow-50 border border-yellow-300 text-yellow-800 dark:bg-yellow-900/30 dark:border-yellow-600 dark:text-yellow-200 rounded-md shadow-md">
+        <div className="mb-6 p-4 bg-yellow-50 border border-yellow-300 text-white dark:bg-yellow-900/30 dark:border-yellow-600 dark:text-yellow-200 rounded-md shadow-md">
           <div className="flex items-start">
             <FaCog className="mt-1 mr-3 flex-shrink-0 text-yellow-600 dark:text-yellow-400" />
             <div>
-              <p className="font-medium text-yellow-800 dark:text-yellow-200">Configurações do veículo não encontradas</p>
-              <p className="mt-1 text-yellow-700 dark:text-yellow-300">
+              <p className="font-medium text-white dark:text-yellow-200">Configurações do veículo não encontradas</p>
+              <p className="mt-1 text-white dark:text-yellow-300">
                 Para calcular corretamente o gasto com gasolina, configure seu veículo e o preço atual do combustível.
               </p>
               <Link 
@@ -155,14 +155,14 @@ export default function Home() {
       )}
 
       <div className="mb-6">
-        <h2 className="text-lg sm:text-xl font-semibold text-gray-800 dark:text-white mb-3">Período de Análise</h2>
+        <h2 className="text-lg sm:text-xl font-semibold text-white mb-3">Período de Análise</h2>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setPeriodo('ontem')}
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'ontem'
                 ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                : 'bg-gray-100 text-white hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
             }`}
           >
             Ontem
@@ -172,7 +172,7 @@ export default function Home() {
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'diario'
                 ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                : 'bg-gray-100 text-white hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
             }`}
           >
             Hoje
@@ -182,7 +182,7 @@ export default function Home() {
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'semanal'
                 ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                : 'bg-gray-100 text-white hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
             }`}
           >
             Última Semana
@@ -192,7 +192,7 @@ export default function Home() {
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'mensal'
                 ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                : 'bg-gray-100 text-white hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
             }`}
           >
             Último Mês
@@ -202,7 +202,7 @@ export default function Home() {
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'anual'
                 ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                : 'bg-gray-100 text-white hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
             }`}
           >
             Último Ano

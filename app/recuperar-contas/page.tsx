@@ -284,16 +284,16 @@ const RecuperarContasPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-6 sm:py-8 max-w-4xl bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-      <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-6">Restauração de Dados para Usuário</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold text-white mb-6">Restauração de Dados para Usuário</h1>
       
       {mensagem && (
         <div 
           className={`mb-6 p-4 rounded-lg flex items-center border ${
             mensagem.tipo === 'erro' 
-              ? 'bg-red-100 border-red-400 text-red-800 dark:bg-red-900/30 dark:border-red-600 dark:text-red-300' 
+              ? 'bg-red-100 border-red-400 text-white dark:bg-red-900/30 dark:border-red-600 dark:text-red-300' 
               : mensagem.tipo === 'sucesso'
-                ? 'bg-green-100 border-green-400 text-green-800 dark:bg-green-900/30 dark:border-green-600 dark:text-green-300'
-                : 'bg-blue-100 border-blue-400 text-blue-800 dark:bg-blue-900/30 dark:border-blue-600 dark:text-blue-300'
+                ? 'bg-green-100 border-green-400 text-white dark:bg-green-900/30 dark:border-green-600 dark:text-green-300'
+                : 'bg-blue-100 border-blue-400 text-white dark:bg-blue-900/30 dark:border-blue-600 dark:text-blue-300'
           }`}
         >
           {mensagem.tipo === 'erro' 

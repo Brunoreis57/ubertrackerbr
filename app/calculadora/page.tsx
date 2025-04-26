@@ -151,17 +151,17 @@ const CalculadoraPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-6 sm:py-8 max-w-6xl bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-      <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-6">Calculadora de Estimativas</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold text-white mb-6">Calculadora de Estimativas</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Formulário de Entrada */}
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-100 dark:border-gray-700">
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-6">Parâmetros de Cálculo</h2>
+          <h2 className="text-xl font-semibold text-white mb-6">Parâmetros de Cálculo</h2>
           
           <div className="space-y-4">
             {/* Seletor de Tipo de Veículo */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-white mb-1">
                 Tipo de Veículo
               </label>
               <div className="flex space-x-4">
@@ -170,7 +170,7 @@ const CalculadoraPage = () => {
                   className={`flex-1 py-2 px-4 rounded-md transition-colors ${
                     tipoVeiculo === 'combustao'
                       ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
+                      : 'bg-gray-100 text-white hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
                   }`}
                 >
                   Combustão
@@ -180,7 +180,7 @@ const CalculadoraPage = () => {
                   className={`flex-1 py-2 px-4 rounded-md transition-colors ${
                     tipoVeiculo === 'eletrico'
                       ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
+                      : 'bg-gray-100 text-white hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
                   }`}
                 >
                   Elétrico
@@ -193,7 +193,7 @@ const CalculadoraPage = () => {
             {tipoVeiculo === 'combustao' && (
               <>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-white mb-1">
                     Preço da Gasolina (R$)
                   </label>
                   <div className="relative">
@@ -212,7 +212,7 @@ const CalculadoraPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-white mb-1">
                     Média de Quilômetros por Litro
                   </label>
                   <div className="relative">
@@ -236,7 +236,7 @@ const CalculadoraPage = () => {
             {tipoVeiculo === 'eletrico' && (
               <>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-white mb-1">
                     Preço da Energia (R$/kWh)
                   </label>
                   <div className="relative">
@@ -255,7 +255,7 @@ const CalculadoraPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-white mb-1">
                     Média de Quilômetros por kWh
                   </label>
                   <div className="relative">
@@ -277,7 +277,7 @@ const CalculadoraPage = () => {
 
             {/* Campos comuns */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-white mb-1">
                 Meta Diária (R$)
               </label>
               <div className="relative">
@@ -296,7 +296,7 @@ const CalculadoraPage = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-white mb-1">
                 Valor por Quilômetro (R$/km)
               </label>
               <div className="relative">
@@ -315,7 +315,7 @@ const CalculadoraPage = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-white mb-1">
                 Dias Trabalhados
               </label>
               <div className="relative">
@@ -334,7 +334,7 @@ const CalculadoraPage = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-white mb-1">
                 Horas por Dia
               </label>
               <div className="relative">
@@ -364,13 +364,13 @@ const CalculadoraPage = () => {
 
         {/* Resultados */}
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-100 dark:border-gray-700">
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-6">Resultados Estimados</h2>
+          <h2 className="text-xl font-semibold text-white mb-6">Resultados Estimados</h2>
           
           {resultados ? (
             <div className="space-y-4">
               {/* Resultados do tipo selecionado */}
               <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-                <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-2">
+                <h3 className="text-lg font-medium text-white mb-2">
                   {tipoVeiculo === 'combustao' ? 'Distância e Combustível (Diário)' : 'Distância e Energia (Diário)'}
                 </h3>
                 <div className="space-y-2">
@@ -400,7 +400,7 @@ const CalculadoraPage = () => {
               </div>
 
               <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-                <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-2">Corridas e Ganhos (Diário)</h3>
+                <h3 className="text-lg font-medium text-white mb-2">Corridas e Ganhos (Diário)</h3>
                 <div className="space-y-2">
                   <p className="text-gray-700 dark:text-gray-300">
                     Corridas necessárias: <span className="font-semibold">{resultados[tipoVeiculo].corridasNecessarias}</span>
@@ -415,7 +415,7 @@ const CalculadoraPage = () => {
               </div>
 
               <div className="bg-blue-50 dark:bg-gray-700 p-4 rounded-lg">
-                <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-2">Totais do Período</h3>
+                <h3 className="text-lg font-medium text-white mb-2">Totais do Período</h3>
                 <div className="space-y-2">
                   <p className="text-gray-700 dark:text-gray-300">
                     Total de quilômetros: <span className="font-semibold">{resultados[tipoVeiculo].totalKmPeriodo.toFixed(1)} km</span>
@@ -453,7 +453,7 @@ const CalculadoraPage = () => {
 
               {/* Comparativo */}
               <div className="bg-purple-50 dark:bg-gray-700 p-4 rounded-lg">
-                <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-2 flex items-center">
+                <h3 className="text-lg font-medium text-white mb-2 flex items-center">
                   <FaExchangeAlt className="mr-2" />
                   Comparativo entre Veículos
                 </h3>
@@ -481,7 +481,7 @@ const CalculadoraPage = () => {
 
               {/* Nova seção de Tempo e Ganhos por Hora */}
               <div className="bg-yellow-50 dark:bg-gray-700 p-4 rounded-lg">
-                <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-2">
+                <h3 className="text-lg font-medium text-white mb-2">
                   <FaClock className="inline-block mr-2" />
                   Tempo e Ganhos por Hora
                 </h3>
