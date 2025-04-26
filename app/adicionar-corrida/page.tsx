@@ -83,7 +83,7 @@ export default function AdicionarCorrida() {
   return (
     <RotaProtegida>
       <div className="container mx-auto px-4 py-4 sm:py-8 max-w-4xl bg-gray-200/60 rounded-lg">
-        <h1 className="text-2xl sm:text-3xl font-bold text-black mb-4 sm:mb-6">Adicionar Corrida</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 dark:text-white">Adicionar Corrida</h1>
         
         {mensagem && (
           <div
