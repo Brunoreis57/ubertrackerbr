@@ -9,6 +9,7 @@
   --input-text: #171717;
   --button-primary: #374151;
   --button-text: #ffffff;
+  --card-light-bg: #f9fafb;
 }
 
 .dark {
@@ -20,6 +21,7 @@
   --input-text: #f3f4f6;
   --button-primary: #4b5563;
   --button-text: #f3f4f6;
+  --card-light-bg: #2d3748;
 }
 
 @theme inline {
@@ -61,11 +63,29 @@ body {
   border-color: #4b5563;
 }
 
-.dark .bg-gray-50, 
-.dark .bg-blue-50, 
-.dark .bg-green-50, 
+/* Cards cores mais claras no tema escuro */
+.dark .bg-gray-50 {
+  background-color: #2d3748; /* Cinza mais claro no modo escuro */
+}
+
+.dark .bg-blue-50 {
+  background-color: #1e3a8a; /* Azul mais claro no modo escuro */
+}
+
+.dark .bg-green-50 {
+  background-color: #065f46; /* Verde mais claro no modo escuro */
+}
+
 .dark .bg-red-50 {
-  background-color: #374151;
+  background-color: #881337; /* Vermelho mais claro no modo escuro */
+}
+
+.dark .bg-yellow-50 {
+  background-color: #92400e; /* Amarelo mais claro no modo escuro */
+}
+
+.dark .bg-purple-50 {
+  background-color: #581c87; /* Roxo mais claro no modo escuro */
 }
 
 /* Estilos para campos de formulário no modo escuro */

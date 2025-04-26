@@ -215,29 +215,29 @@ export default function Home() {
           titulo="Ganho Bruto"
           valor={formatarDinheiro(resumo.ganhoBruto)}
           icone={<FaMoneyBillWave size={24} />}
-          corFundo=""
-          corTexto=""
+          corFundo="dark:bg-green-800"
+          corTexto="dark:text-white"
         />
         <Card
           titulo="Ganho Líquido"
           valor={formatarDinheiro(resumo.ganhoLiquido)}
           icone={<FaWallet size={24} />}
-          corFundo=""
-          corTexto=""
+          corFundo="dark:bg-blue-800"
+          corTexto="dark:text-white"
         />
         <Card
           titulo="Gasto com Gasolina"
           valor={formatarDinheiro(resumo.gastoGasolina)}
           icone={<FaGasPump size={24} />}
-          corFundo=""
-          corTexto=""
+          corFundo="dark:bg-red-800"
+          corTexto="dark:text-white"
         />
         <Card
           titulo="Outros Gastos"
           valor={formatarDinheiro(resumo.outrosGastos)}
           icone={<FaCalendarAlt size={24} />}
-          corFundo=""
-          corTexto=""
+          corFundo="dark:bg-yellow-800"
+          corTexto="dark:text-white"
         />
       </div>
 

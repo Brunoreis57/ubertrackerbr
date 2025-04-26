@@ -40,17 +40,6 @@ const Navbar = ({ children }: NavbarProps) => {
     // Adicionar listener para mudanças de tamanho de tela
     window.addEventListener('resize', checkScreenSize);
     
-    // Recuperar preferência de tema do localStorage
-    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-    setDarkMode(savedDarkMode);
-    
-    // Aplicar o tema ao body
-    if (savedDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    
     // Limpar listener ao desmontar o componente
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
@@ -66,6 +55,18 @@ const Navbar = ({ children }: NavbarProps) => {
         const { logado, sessao } = verificarLogin();
         setUsuario(logado ? sessao : null);
       }, 5 * 60 * 1000);
+      
+      // Carregar a preferência de tema do localStorage
+      const savedDarkMode = localStorage.getItem('darkMode');
+      const prefersDarkMode = savedDarkMode === 'true';
+      setDarkMode(prefersDarkMode);
+      
+      // Aplicar o tema ao body
+      if (prefersDarkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
       
       return () => clearInterval(intervalo);
     }
@@ -133,7 +134,7 @@ const Navbar = ({ children }: NavbarProps) => {
   }
 
   return (
-    <div className={`flex flex-col min-h-screen ${darkMode ? 'dark' : ''}`}>
+    <div className="flex flex-col min-h-screen">
       {/* Header fixo no topo */}
       <header className="h-16 bg-gray-900 text-white shadow-md sticky top-0 z-40 flex items-center justify-between px-4">
         <div className="flex items-center">
