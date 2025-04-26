@@ -122,15 +122,15 @@ const RelatoriosPage = () => {
     corFundo: string
   ) => {
     return (
-      <div className={`${corFundo} rounded-lg shadow-md p-4 flex flex-col`}>
+      <div className={`${corFundo} rounded-lg shadow-md p-4 flex flex-col bg-gray-900`}>
         <div className="flex items-center mb-2">
-          <div className="mr-3 text-gray-900 dark:text-white">
+          <div className="mr-3 text-white">
             {icone}
           </div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{titulo}</h3>
+          <h3 className="text-lg font-semibold text-white">{titulo}</h3>
         </div>
-        <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{valor}</div>
-        <p className="text-sm text-gray-800 dark:text-gray-200">{descricao}</p>
+        <div className="text-3xl font-bold text-white mb-2">{valor}</div>
+        <p className="text-sm text-gray-200">{descricao}</p>
       </div>
     );
   };
@@ -211,65 +211,65 @@ const RelatoriosPage = () => {
                   {renderizarCardIndicador(
                     'Total de Viagens',
                     resumos[periodoAtual].totalCorridas.toString(),
-                    <FaList size={24} />,
+                    <FaList size={24} className="text-blue-300" />,
                     'Número total de viagens realizadas',
-                    'bg-gray-50 dark:bg-gray-800'
+                    ''
                   )}
                   {renderizarCardIndicador(
                     'Quilômetros Rodados',
                     `${resumos[periodoAtual].totalKm.toFixed(1)} km`,
-                    <FaRoute size={24} />,
+                    <FaRoute size={24} className="text-green-300" />,
                     'Distância total percorrida',
-                    'bg-blue-50 dark:bg-blue-900'
+                    ''
                   )}
                   {renderizarCardIndicador(
                     'Ganho Bruto',
                     formatarDinheiro(resumos[periodoAtual].totalGanhos),
-                    <FaMoneyBillWave size={24} />,
+                    <FaMoneyBillWave size={24} className="text-yellow-300" />,
                     'Valor total ganho no período',
-                    'bg-green-50 dark:bg-green-900'
+                    ''
                   )}
                   {renderizarCardIndicador(
                     'Gasto com Gasolina',
                     formatarDinheiro(resumos[periodoAtual].totalGastoGasolina),
-                    <FaGasPump size={24} />,
+                    <FaGasPump size={24} className="text-red-300" />,
                     'Valor total gasto com combustível',
-                    'bg-red-50 dark:bg-red-900'
+                    ''
                   )}
                 </div>
               </div>
 
               <div className="mb-8">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Médias Diárias</h2>
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                <div className="bg-gray-900 rounded-lg shadow-md p-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div>
-                      <h3 className="text-lg font-medium text-gray-800 dark:text-gray-100 mb-2">Ganho Médio</h3>
-                      <p className="text-2xl font-bold text-green-700 dark:text-green-400">
+                      <h3 className="text-lg font-medium text-white mb-2">Ganho Médio</h3>
+                      <p className="text-2xl font-bold text-green-300">
                         {formatarDinheiro(resumos[periodoAtual].mediaGanhosPorCorrida)}
                       </p>
-                      <p className="text-sm text-gray-700 dark:text-gray-300">Por dia</p>
+                      <p className="text-sm text-gray-300">Por dia</p>
                     </div>
                     <div>
-                      <h3 className="text-lg font-medium text-gray-800 dark:text-gray-100 mb-2">Distância Média</h3>
-                      <p className="text-2xl font-bold text-blue-700 dark:text-blue-400">
+                      <h3 className="text-lg font-medium text-white mb-2">Distância Média</h3>
+                      <p className="text-2xl font-bold text-blue-300">
                         {resumos[periodoAtual].mediaKmPorCorrida.toFixed(1)} km
                       </p>
-                      <p className="text-sm text-gray-700 dark:text-gray-300">Por dia</p>
+                      <p className="text-sm text-gray-300">Por dia</p>
                     </div>
                     <div>
-                      <h3 className="text-lg font-medium text-gray-800 dark:text-gray-100 mb-2">Gasto Médio</h3>
-                      <p className="text-2xl font-bold text-red-700 dark:text-red-400">
+                      <h3 className="text-lg font-medium text-white mb-2">Gasto Médio</h3>
+                      <p className="text-2xl font-bold text-red-300">
                         {formatarDinheiro(resumos[periodoAtual].mediaGastoGasolinaPorCorrida)}
                       </p>
-                      <p className="text-sm text-gray-700 dark:text-gray-300">Gasolina por dia</p>
+                      <p className="text-sm text-gray-300">Gasolina por dia</p>
                     </div>
                     <div>
-                      <h3 className="text-lg font-medium text-gray-800 dark:text-gray-100 mb-2">Ganho por Hora</h3>
-                      <p className="text-2xl font-bold text-yellow-700 dark:text-yellow-400">
+                      <h3 className="text-lg font-medium text-white mb-2">Ganho por Hora</h3>
+                      <p className="text-2xl font-bold text-yellow-300">
                         {formatarDinheiro(resumos[periodoAtual].mediaGanhosHora)}
                       </p>
-                      <p className="text-sm text-gray-700 dark:text-gray-300">Por hora trabalhada</p>
+                      <p className="text-sm text-gray-300">Por hora trabalhada</p>
                     </div>
                   </div>
                 </div>

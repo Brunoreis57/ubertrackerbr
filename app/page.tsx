@@ -214,40 +214,40 @@ export default function Home() {
         <Card
           titulo="Ganho Bruto"
           valor={formatarDinheiro(resumo.ganhoBruto)}
-          icone={<FaMoneyBillWave size={24} />}
+          icone={<FaMoneyBillWave size={24} className="text-green-300" />}
           corFundo=""
           corTexto=""
         />
         <Card
           titulo="Ganho Líquido"
           valor={formatarDinheiro(resumo.ganhoLiquido)}
-          icone={<FaWallet size={24} />}
+          icone={<FaWallet size={24} className="text-blue-300" />}
           corFundo=""
           corTexto=""
         />
         <Card
           titulo="Gasto com Gasolina"
           valor={formatarDinheiro(resumo.gastoGasolina)}
-          icone={<FaGasPump size={24} />}
+          icone={<FaGasPump size={24} className="text-red-300" />}
           corFundo=""
           corTexto=""
         />
         <Card
           titulo="Outros Gastos"
           valor={formatarDinheiro(resumo.outrosGastos)}
-          icone={<FaCalendarAlt size={24} />}
+          icone={<FaCalendarAlt size={24} className="text-yellow-300" />}
           corFundo=""
           corTexto=""
         />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 dark:bg-gray-800">
-          <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 dark:text-white">Evolução de Ganhos</h2>
+        <div className="bg-gray-900 rounded-lg shadow-md p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-semibold text-white mb-4">Evolução de Ganhos</h2>
           <Grafico tipo="linha" dados={dadosGraficoGanhos} titulo="Ganhos no Último Mês" altura={300} />
         </div>
-        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 dark:bg-gray-800">
-          <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 dark:text-white">Distribuição de Gastos</h2>
+        <div className="bg-gray-900 rounded-lg shadow-md p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-semibold text-white mb-4">Distribuição de Gastos</h2>
           <Grafico tipo="pizza" dados={dadosGraficoGastos} titulo="Gastos por Categoria" altura={300} />
         </div>
       </div>
