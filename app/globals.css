@@ -5,6 +5,7 @@
   --foreground: #171717;
   --card-bg: #ffffff;
   --card-text: #171717;
+  --card-bg-accent: #f3f4f6;
   --input-bg: #ffffff;
   --input-text: #171717;
   --button-primary: #374151;
@@ -14,7 +15,8 @@
 .dark {
   --background: #111827;
   --foreground: #f3f4f6;
-  --card-bg: #2d3748;
+  --card-bg: #1f2937;
+  --card-bg-accent: #2d3748;
   --card-text: #f3f4f6;
   --input-bg: #374151;
   --input-text: #f3f4f6;
@@ -30,7 +32,7 @@
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -39,16 +41,17 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Estilos para cartões no modo escuro */
-.dark .bg-white {
+/* Estilos para cartões */
+.bg-white {
   background-color: var(--card-bg);
   color: var(--card-text);
 }
 
-.dark .text-gray-900 {
+.text-gray-900 {
   color: var(--card-text);
 }
 
+/* Estilos específicos para o modo escuro */
 .dark .text-gray-800 {
   color: #e5e7eb;
 }
@@ -61,15 +64,27 @@ body {
   border-color: #4b5563;
 }
 
+/* Cores de fundo dos cards coloridos */
+.bg-gray-50 {
+  background-color: var(--card-bg-accent);
+}
+
 .dark .bg-gray-50, 
 .dark .bg-blue-50, 
 .dark .bg-green-50, 
 .dark .bg-red-50 {
-  background-color: #4b5563;
-  color: white;
+  background-color: var(--card-bg-accent);
 }
 
-/* Estilos para campos de formulário no modo escuro */
+/* Estilos para campos de formulário */
+input,
+select,
+textarea {
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  border-color: #d1d5db;
+}
+
 .dark input,
 .dark select,
 .dark textarea {
@@ -104,56 +119,4 @@ html, body {
   html {
     font-size: 16px;
   }
-}
-
-/* Estilos específicos para gráficos no modo escuro */
-.dark .bg-white .Grafico canvas {
-  background-color: var(--card-bg);
-  border-radius: 0.5rem;
-}
-
-/* Melhorar visibilidade dos textos em diferentes áreas */
-.dark .text-gray-800,
-.dark .text-gray-900,
-.dark .text-gray-700,
-.dark .text-gray-600 {
-  color: var(--card-text);
-}
-
-/* Ajustar as cores dos cartões indicadores */
-.dark .bg-gray-50 {
-  background-color: #384152;
-}
-
-.dark .bg-blue-50 {
-  background-color: #334171;
-}
-
-.dark .bg-green-50 {
-  background-color: #31543f;
-}
-
-.dark .bg-red-50 {
-  background-color: #513339;
-}
-
-/* Ajustes para cabeçalhos de formulários */
-.dark label.text-gray-900 {
-  color: #e5e7eb !important;
-}
-
-/* Ajustes para cartões na tela inicial */
-.dark .bg-white.rounded-lg.shadow-md {
-  background-color: var(--card-bg);
-  border-color: var(--card-bg);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-/* Melhorar o contraste dos componentes de UI no modo escuro */
-.dark button.bg-gray-900 {
-  background-color: #1e293b;
-}
-
-.dark button.hover\:bg-gray-800:hover {
-  background-color: #374151;
 }

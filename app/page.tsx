@@ -96,8 +96,8 @@ export default function Home() {
           })
           .sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime())
           .map(corrida => corrida.ganhoBruto),
-        backgroundColor: 'rgba(75, 192, 192, 0.3)',
-        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 2,
       },
     ],
@@ -111,14 +111,14 @@ export default function Home() {
         label: 'Gastos',
         data: [resumo.gastoGasolina, resumo.gastoManutencao, resumo.gastoIPVA],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.7)',
-          'rgba(54, 162, 235, 0.7)',
-          'rgba(255, 206, 86, 0.7)',
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
         ],
         borderColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 206, 86)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
         ],
         borderWidth: 1,
       },

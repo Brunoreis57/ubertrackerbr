@@ -18,10 +18,10 @@ const Card = ({
   corTexto,
 }: CardProps) => {
   return (
-    <div className="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-4 sm:p-6 transition-all duration-300 hover:shadow-xl border border-gray-200 dark:border-gray-600">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6 transition-all duration-300 hover:shadow-xl border-2 border-gray-100 dark:border-gray-700">
       <div className="flex items-center mb-3 sm:mb-4">
-        <div className="text-gray-800 dark:text-white mr-2 sm:mr-3 text-xl sm:text-2xl">{icone}</div>
-        <h3 className="text-gray-800 dark:text-white font-bold text-base sm:text-lg">{titulo}</h3>
+        <div className="text-gray-900 dark:text-white mr-2 sm:mr-3 text-xl sm:text-2xl">{icone}</div>
+        <h3 className="text-gray-900 dark:text-white font-bold text-base sm:text-lg">{titulo}</h3>
       </div>
       <div className="text-gray-900 dark:text-white text-2xl sm:text-3xl font-bold break-words" dangerouslySetInnerHTML={{ __html: valor }} />
     </div>
