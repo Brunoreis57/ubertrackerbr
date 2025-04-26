@@ -62,23 +62,27 @@ const ConfiguracoesPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Configurações</h1>
+    <div className="container mx-auto px-4 py-6 sm:py-8 max-w-6xl bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+      <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-6">Configurações</h1>
 
       {mensagem && (
         <div
-          className={`p-4 mb-6 rounded-md bg-gray-200 border border-gray-400 text-gray-900`}
+          className={`p-4 mb-6 rounded-md border ${
+            mensagem.tipo === 'sucesso'
+              ? 'bg-green-100 border-green-400 text-green-800 dark:bg-green-900/30 dark:border-green-600 dark:text-green-300'
+              : 'bg-red-100 border-red-400 text-red-800 dark:bg-red-900/30 dark:border-red-600 dark:text-red-300'
+          }`}
         >
           {mensagem.texto}
         </div>
       )}
 
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-2xl font-bold mb-6 text-gray-900">Configurações do Veículo</h2>
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-100 dark:border-gray-700">
+        <h2 className="text-xl font-bold mb-6 text-gray-800 dark:text-white">Configurações do Veículo</h2>
 
         <div className="space-y-6">
           <div>
-            <label htmlFor="modelo" className="block text-sm font-medium text-gray-900 mb-1">
+            <label htmlFor="modelo" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Modelo do Veículo
             </label>
             <input
@@ -87,13 +91,13 @@ const ConfiguracoesPage = () => {
               name="modelo"
               value={config.modelo}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-600 text-black"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               placeholder="Ex: Honda Civic"
             />
           </div>
 
           <div>
-            <label htmlFor="ano" className="block text-sm font-medium text-gray-900 mb-1">
+            <label htmlFor="ano" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Ano do Veículo
             </label>
             <input
@@ -104,12 +108,12 @@ const ConfiguracoesPage = () => {
               onChange={handleChange}
               min="1990"
               max={new Date().getFullYear() + 1}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-600 text-black"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             />
           </div>
 
           <div>
-            <label htmlFor="consumoMedio" className="block text-sm font-medium text-gray-900 mb-1">
+            <label htmlFor="consumoMedio" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Consumo Médio (km/litro)
             </label>
             <input
@@ -120,15 +124,15 @@ const ConfiguracoesPage = () => {
               onChange={handleChange}
               min="1"
               step="0.1"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-600 text-black"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             />
-            <p className="mt-1 text-sm text-gray-700">
+            <p className="mt-1 text-sm text-gray-700 dark:text-gray-300">
               Quantos quilômetros seu veículo percorre com 1 litro de combustível
             </p>
           </div>
 
           <div>
-            <label htmlFor="precoGasolina" className="block text-sm font-medium text-gray-900 mb-1">
+            <label htmlFor="precoGasolina" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Preço da Gasolina (R$/litro)
             </label>
             <input
@@ -139,12 +143,12 @@ const ConfiguracoesPage = () => {
               onChange={handleChange}
               min="0.01"
               step="0.01"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-600 text-black"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             />
           </div>
 
           <div>
-            <label htmlFor="valorIPVA" className="block text-sm font-medium text-gray-900 mb-1">
+            <label htmlFor="valorIPVA" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Valor Anual do IPVA (R$)
             </label>
             <input
@@ -155,12 +159,12 @@ const ConfiguracoesPage = () => {
               onChange={handleChange}
               min="0"
               step="0.01"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-600 text-black"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             />
           </div>
 
           <div>
-            <label htmlFor="gastoManutencao" className="block text-sm font-medium text-gray-900 mb-1">
+            <label htmlFor="gastoManutencao" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Gasto Anual com Manutenção (R$)
             </label>
             <input
@@ -171,7 +175,7 @@ const ConfiguracoesPage = () => {
               onChange={handleChange}
               min="0"
               step="0.01"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-600 text-black"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             />
           </div>
 

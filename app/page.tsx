@@ -126,8 +126,8 @@ export default function Home() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-4 sm:py-8 max-w-6xl">
-      <h1 className="text-2xl sm:text-3xl font-bold text-black mb-4 sm:mb-6 dark:text-gray-100">Dashboard</h1>
+    <div className="container mx-auto px-4 py-6 sm:py-8 max-w-6xl bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+      <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-6">Dashboard</h1>
       
       {/* Cards de navegação móvel */}
       <div className="mb-8">
@@ -135,17 +135,17 @@ export default function Home() {
       </div>
 
       {!configVeiculo && (
-        <div className="mb-6 p-4 bg-gray-200 text-black border border-gray-400 rounded-md dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 shadow-md">
+        <div className="mb-6 p-4 bg-yellow-50 border border-yellow-300 text-yellow-800 dark:bg-yellow-900/30 dark:border-yellow-600 dark:text-yellow-200 rounded-md shadow-md">
           <div className="flex items-start">
-            <FaCog className="mt-1 mr-3 flex-shrink-0 text-gray-700 dark:text-gray-300" />
+            <FaCog className="mt-1 mr-3 flex-shrink-0 text-yellow-600 dark:text-yellow-400" />
             <div>
-              <p className="font-medium text-black dark:text-gray-100">Configurações do veículo não encontradas</p>
-              <p className="mt-1 text-black dark:text-gray-200">
+              <p className="font-medium text-yellow-800 dark:text-yellow-200">Configurações do veículo não encontradas</p>
+              <p className="mt-1 text-yellow-700 dark:text-yellow-300">
                 Para calcular corretamente o gasto com gasolina, configure seu veículo e o preço atual do combustível.
               </p>
               <Link 
                 href="/configuracoes" 
-                className="mt-2 inline-flex items-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 text-sm font-medium dark:bg-gray-600 dark:hover:bg-gray-700 shadow-sm"
+                className="mt-2 inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium shadow-sm"
               >
                 <FaCog className="mr-2" /> Configurar Veículo
               </Link>
@@ -154,15 +154,15 @@ export default function Home() {
         </div>
       )}
 
-      <div className="mb-4 sm:mb-6">
-        <h2 className="text-lg sm:text-xl font-semibold text-black mb-2 sm:mb-3 dark:text-gray-100">Período de Análise</h2>
+      <div className="mb-6">
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-800 dark:text-white mb-3">Período de Análise</h2>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setPeriodo('ontem')}
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'ontem'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-black hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
             }`}
           >
             Ontem
@@ -171,8 +171,8 @@ export default function Home() {
             onClick={() => setPeriodo('diario')}
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'diario'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-black hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
             }`}
           >
             Hoje
@@ -181,8 +181,8 @@ export default function Home() {
             onClick={() => setPeriodo('semanal')}
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'semanal'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-black hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
             }`}
           >
             Última Semana
@@ -191,8 +191,8 @@ export default function Home() {
             onClick={() => setPeriodo('mensal')}
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'mensal'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-black hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
             }`}
           >
             Último Mês
@@ -201,8 +201,8 @@ export default function Home() {
             onClick={() => setPeriodo('anual')}
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'anual'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-black hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
             }`}
           >
             Último Ano

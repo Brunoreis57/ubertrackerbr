@@ -283,24 +283,24 @@ const RecuperarContasPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-6">Restauração de Dados para Usuário</h1>
+    <div className="container mx-auto px-4 py-6 sm:py-8 max-w-4xl bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+      <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-6">Restauração de Dados para Usuário</h1>
       
       {mensagem && (
         <div 
-          className={`mb-6 p-4 rounded-lg flex items-center ${
+          className={`mb-6 p-4 rounded-lg flex items-center border ${
             mensagem.tipo === 'erro' 
-              ? 'bg-red-100 text-red-800 border border-red-400' 
+              ? 'bg-red-100 border-red-400 text-red-800 dark:bg-red-900/30 dark:border-red-600 dark:text-red-300' 
               : mensagem.tipo === 'sucesso'
-                ? 'bg-green-100 text-green-800 border border-green-400'
-                : 'bg-blue-100 text-blue-800 border border-blue-400'
+                ? 'bg-green-100 border-green-400 text-green-800 dark:bg-green-900/30 dark:border-green-600 dark:text-green-300'
+                : 'bg-blue-100 border-blue-400 text-blue-800 dark:bg-blue-900/30 dark:border-blue-600 dark:text-blue-300'
           }`}
         >
           {mensagem.tipo === 'erro' 
-            ? <FaExclamationTriangle className="mr-2" /> 
+            ? <FaExclamationTriangle className="mr-2 text-red-600 dark:text-red-400" /> 
             : mensagem.tipo === 'sucesso'
-              ? <FaCheck className="mr-2" />
-              : <FaSearch className="mr-2" />
+              ? <FaCheck className="mr-2 text-green-600 dark:text-green-400" />
+              : <FaSearch className="mr-2 text-blue-600 dark:text-blue-400" />
           }
           <span>{mensagem.texto}</span>
         </div>

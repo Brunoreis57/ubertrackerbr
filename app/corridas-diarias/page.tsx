@@ -177,15 +177,15 @@ const CorridasDiarias = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-4 sm:py-8 max-w-6xl bg-gray-200/60 rounded-lg shadow-md">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 sm:mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 md:mb-0 dark:text-white">Corridas Diárias</h1>
+    <div className="container mx-auto px-4 py-6 sm:py-8 max-w-6xl bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-4 md:mb-0">Corridas Diárias</h1>
         <button
           onClick={toggleFormulario}
           className={`flex items-center justify-center px-4 py-2 rounded-md ${
             mostrarFormulario 
               ? 'bg-gray-600 hover:bg-gray-700' 
-              : 'bg-gray-900 hover:bg-gray-800'
+              : 'bg-blue-600 hover:bg-blue-700'
           } text-white transition-colors font-medium shadow-md`}
         >
           {mostrarFormulario ? (
@@ -202,7 +202,11 @@ const CorridasDiarias = () => {
 
       {mensagem && (
         <div
-          className={`p-3 sm:p-4 mb-4 sm:mb-6 rounded-md bg-gray-200 border-2 border-gray-400 text-black shadow-md`}
+          className={`p-3 sm:p-4 mb-6 rounded-md border-2 ${
+            mensagem.tipo === 'sucesso'
+              ? 'bg-green-100 border-green-400 text-green-800 dark:bg-green-900/30 dark:border-green-600 dark:text-green-300'
+              : 'bg-red-100 border-red-400 text-red-800 dark:bg-red-900/30 dark:border-red-600 dark:text-red-300'
+          } shadow-md`}
         >
           {mensagem.texto}
         </div>

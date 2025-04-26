@@ -82,15 +82,15 @@ export default function AdicionarCorrida() {
 
   return (
     <RotaProtegida>
-      <div className="container mx-auto px-4 py-4 sm:py-8 max-w-4xl bg-gray-200/60 rounded-lg">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 dark:text-white">Adicionar Corrida</h1>
+      <div className="container mx-auto px-4 py-6 sm:py-8 max-w-4xl bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-6">Adicionar Corrida</h1>
         
         {mensagem && (
           <div
             className={`p-3 sm:p-4 mb-4 sm:mb-6 rounded-md ${
               mensagem.tipo === 'sucesso' 
-                ? 'bg-green-100 border-green-400 text-green-800' 
-                : 'bg-red-100 border-red-400 text-red-800'
+                ? 'bg-green-100 border-green-400 text-green-800 dark:bg-green-900/30 dark:border-green-600 dark:text-green-300' 
+                : 'bg-red-100 border-red-400 text-red-800 dark:bg-red-900/30 dark:border-red-600 dark:text-red-300'
             } border-2`}
           >
             {mensagem.texto}
