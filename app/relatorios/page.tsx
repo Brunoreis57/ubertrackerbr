@@ -122,39 +122,39 @@ const RelatoriosPage = () => {
     corFundo: string
   ) => {
     return (
-      <div className={`${corFundo} rounded-lg shadow-md p-4 flex flex-col`}>
+      <div className={`${corFundo} rounded-lg shadow-lg hover:shadow-xl p-4 flex flex-col border border-gray-200 dark:border-gray-700 transition-shadow duration-300`}>
         <div className="flex items-center mb-2">
-          <div className="mr-3 text-gray-900 dark:text-white">
+          <div className="mr-3 text-gray-800 dark:text-white">
             {icone}
           </div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{titulo}</h3>
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-white">{titulo}</h3>
         </div>
-        <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{valor}</div>
-        <p className="text-sm text-gray-800 dark:text-gray-200">{descricao}</p>
+        <div className="text-3xl font-bold text-gray-800 dark:text-white mb-2">{valor}</div>
+        <p className="text-sm text-gray-700 dark:text-gray-200">{descricao}</p>
       </div>
     );
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Relatórios e Análises</h1>
+      <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">Relatórios e Análises</h1>
 
       {carregando ? (
         <div className="text-center py-8">
-          <p className="text-gray-900 text-lg">Carregando dados...</p>
+          <p className="text-gray-800 text-lg dark:text-gray-200">Carregando dados...</p>
         </div>
       ) : (
         <>
           <div className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">Selecione o Período</h2>
-            <div className="bg-white rounded-lg shadow-md p-4 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+            <h2 className="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Selecione o Período</h2>
+            <div className="bg-white rounded-lg shadow-lg p-4 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setPeriodoAtual('ontem')}
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'ontem'
                       ? 'bg-gray-800 text-white dark:bg-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                      : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
                   }`}
                 >
                   Ontem
@@ -164,7 +164,7 @@ const RelatoriosPage = () => {
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'diario'
                       ? 'bg-gray-800 text-white dark:bg-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                      : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
                   }`}
                 >
                   Diário
@@ -174,7 +174,7 @@ const RelatoriosPage = () => {
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'semanal'
                       ? 'bg-gray-800 text-white dark:bg-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                      : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
                   }`}
                 >
                   Semanal
@@ -184,7 +184,7 @@ const RelatoriosPage = () => {
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'mensal'
                       ? 'bg-gray-800 text-white dark:bg-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                      : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
                   }`}
                 >
                   Mensal
@@ -194,7 +194,7 @@ const RelatoriosPage = () => {
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'anual'
                       ? 'bg-gray-800 text-white dark:bg-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                      : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
                   }`}
                 >
                   Anual
@@ -206,7 +206,7 @@ const RelatoriosPage = () => {
           {resumos ? (
             <>
               <div className="mb-8">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">Resumo {periodoAtual.charAt(0).toUpperCase() + periodoAtual.slice(1)}</h2>
+                <h2 className="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Resumo {periodoAtual.charAt(0).toUpperCase() + periodoAtual.slice(1)}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                   {renderizarCardIndicador(
                     'Total de Viagens',
@@ -240,8 +240,8 @@ const RelatoriosPage = () => {
               </div>
 
               <div className="mb-8">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">Médias Diárias</h2>
-                <div className="bg-white rounded-lg shadow-md p-6 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                <h2 className="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Médias Diárias</h2>
+                <div className="bg-white rounded-lg shadow-lg p-6 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div>
                       <h3 className="text-lg font-medium text-gray-800 mb-2 dark:text-gray-200">Ganho Médio</h3>

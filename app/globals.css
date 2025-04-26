@@ -9,6 +9,10 @@
   --input-text: #171717;
   --button-primary: #374151;
   --button-text: #ffffff;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --border-color: #e5e7eb;
 }
 
 .dark {
@@ -20,6 +24,10 @@
   --input-text: #f3f4f6;
   --button-primary: #4b5563;
   --button-text: #f3f4f6;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --border-color: #4b5563;
 }
 
 @theme inline {
@@ -37,6 +45,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Correção para textos em modo claro */
+.text-white {
+  color: var(--foreground);
+}
+
+.dark .text-white {
+  color: #ffffff;
 }
 
 /* Estilos para cartões no modo escuro */
@@ -61,6 +78,19 @@ body {
   border-color: #4b5563;
 }
 
+/* Sombras e bordas para elementos UI */
+.shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.border {
+  border-color: var(--border-color);
+}
+
 /* Cartões de cores específicas no modo escuro */
 .dark .bg-gray-50, 
 .dark .bg-blue-50, 
@@ -82,6 +112,15 @@ body {
 /* Estilos para os gráficos e cartões no modo escuro */
 .dark .bg-gray-800 {
   background-color: var(--card-bg);
+}
+
+/* Corrige problemas de contraste no modo claro */
+.bg-gray-900 {
+  color: #ffffff;
+}
+
+.bg-gray-800 {
+  color: #ffffff;
 }
 
 /* Estilos para campos de formulário no modo escuro */
