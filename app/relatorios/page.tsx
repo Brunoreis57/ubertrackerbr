@@ -122,39 +122,39 @@ const RelatoriosPage = () => {
     corFundo: string
   ) => {
     return (
-      <div className={`${corFundo} rounded-lg shadow-lg p-4 flex flex-col hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-gray-700`}>
+      <div className={`${corFundo} rounded-lg shadow-md p-4 flex flex-col`}>
         <div className="flex items-center mb-2">
-          <div className="mr-3 text-gray-900 dark:text-white">
+          <div className="mr-3 text-gray-900">
             {icone}
           </div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{titulo}</h3>
+          <h3 className="text-lg font-semibold text-gray-900">{titulo}</h3>
         </div>
-        <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{valor}</div>
-        <p className="text-sm text-gray-800 dark:text-gray-200">{descricao}</p>
+        <div className="text-3xl font-bold text-gray-900 mb-2">{valor}</div>
+        <p className="text-sm text-gray-800">{descricao}</p>
       </div>
     );
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Relatórios e Análises</h1>
+      <h1 className="text-3xl font-bold text-gray-900 mb-8">Relatórios e Análises</h1>
 
       {carregando ? (
         <div className="text-center py-8">
-          <p className="text-gray-900 dark:text-white text-lg">Carregando dados...</p>
+          <p className="text-gray-900 text-lg">Carregando dados...</p>
         </div>
       ) : (
         <>
           <div className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">Selecione o Período</h2>
-            <div className="bg-white rounded-lg shadow-md p-4 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">Selecione o Período</h2>
+            <div className="bg-white rounded-lg shadow-md p-4">
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setPeriodoAtual('ontem')}
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'ontem'
-                      ? 'bg-gray-800 text-white dark:bg-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                      ? 'bg-gray-800 text-white'
+                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
                   }`}
                 >
                   Ontem
@@ -163,8 +163,8 @@ const RelatoriosPage = () => {
                   onClick={() => setPeriodoAtual('diario')}
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'diario'
-                      ? 'bg-gray-800 text-white dark:bg-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                      ? 'bg-gray-800 text-white'
+                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
                   }`}
                 >
                   Diário
@@ -173,8 +173,8 @@ const RelatoriosPage = () => {
                   onClick={() => setPeriodoAtual('semanal')}
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'semanal'
-                      ? 'bg-gray-800 text-white dark:bg-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                      ? 'bg-gray-800 text-white'
+                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
                   }`}
                 >
                   Semanal
@@ -183,8 +183,8 @@ const RelatoriosPage = () => {
                   onClick={() => setPeriodoAtual('mensal')}
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'mensal'
-                      ? 'bg-gray-800 text-white dark:bg-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                      ? 'bg-gray-800 text-white'
+                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
                   }`}
                 >
                   Mensal
@@ -193,8 +193,8 @@ const RelatoriosPage = () => {
                   onClick={() => setPeriodoAtual('anual')}
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'anual'
-                      ? 'bg-gray-800 text-white dark:bg-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                      ? 'bg-gray-800 text-white'
+                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
                   }`}
                 >
                   Anual
@@ -206,88 +206,88 @@ const RelatoriosPage = () => {
           {resumos ? (
             <>
               <div className="mb-8">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">Resumo {periodoAtual.charAt(0).toUpperCase() + periodoAtual.slice(1)}</h2>
+                <h2 className="text-xl font-semibold text-gray-900 mb-4">Resumo {periodoAtual.charAt(0).toUpperCase() + periodoAtual.slice(1)}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                   {renderizarCardIndicador(
                     'Total de Viagens',
                     resumos[periodoAtual].totalCorridas.toString(),
                     <FaList size={24} />,
                     'Número total de viagens realizadas',
-                    'bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700'
+                    'bg-gray-50'
                   )}
                   {renderizarCardIndicador(
                     'Quilômetros Rodados',
                     `${resumos[periodoAtual].totalKm.toFixed(1)} km`,
                     <FaRoute size={24} />,
                     'Distância total percorrida',
-                    'bg-blue-50 dark:bg-blue-800 border border-gray-200 dark:border-gray-700'
+                    'bg-blue-50'
                   )}
                   {renderizarCardIndicador(
                     'Ganho Bruto',
                     formatarDinheiro(resumos[periodoAtual].totalGanhos),
                     <FaMoneyBillWave size={24} />,
                     'Valor total ganho no período',
-                    'bg-green-50 dark:bg-green-800 border border-gray-200 dark:border-gray-700'
+                    'bg-green-50'
                   )}
                   {renderizarCardIndicador(
                     'Gasto com Gasolina',
                     formatarDinheiro(resumos[periodoAtual].totalGastoGasolina),
                     <FaGasPump size={24} />,
                     'Valor total gasto com combustível',
-                    'bg-red-50 dark:bg-red-800 border border-gray-200 dark:border-gray-700'
+                    'bg-red-50'
                   )}
                 </div>
               </div>
 
               <div className="mb-8">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">Médias Diárias</h2>
-                <div className="bg-white rounded-lg shadow-md p-6 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4">Médias Diárias</h2>
+                <div className="bg-white rounded-lg shadow-md p-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div>
-                      <h3 className="text-lg font-medium text-gray-800 mb-2 dark:text-gray-200">Ganho Médio</h3>
-                      <p className="text-2xl font-bold text-green-700 dark:text-green-400">
+                      <h3 className="text-lg font-medium text-gray-800 mb-2">Ganho Médio</h3>
+                      <p className="text-2xl font-bold text-green-700">
                         {formatarDinheiro(resumos[periodoAtual].mediaGanhosPorCorrida)}
                       </p>
-                      <p className="text-sm text-gray-700 dark:text-gray-300">Por dia</p>
+                      <p className="text-sm text-gray-700">Por dia</p>
                     </div>
                     <div>
-                      <h3 className="text-lg font-medium text-gray-800 mb-2 dark:text-gray-200">Distância Média</h3>
-                      <p className="text-2xl font-bold text-blue-700 dark:text-blue-400">
+                      <h3 className="text-lg font-medium text-gray-800 mb-2">Distância Média</h3>
+                      <p className="text-2xl font-bold text-blue-700">
                         {resumos[periodoAtual].mediaKmPorCorrida.toFixed(1)} km
                       </p>
-                      <p className="text-sm text-gray-700 dark:text-gray-300">Por dia</p>
+                      <p className="text-sm text-gray-700">Por dia</p>
                     </div>
                     <div>
-                      <h3 className="text-lg font-medium text-gray-800 mb-2 dark:text-gray-200">Gasto Médio</h3>
-                      <p className="text-2xl font-bold text-red-700 dark:text-red-400">
+                      <h3 className="text-lg font-medium text-gray-800 mb-2">Gasto Médio</h3>
+                      <p className="text-2xl font-bold text-red-700">
                         {formatarDinheiro(resumos[periodoAtual].mediaGastoGasolinaPorCorrida)}
                       </p>
-                      <p className="text-sm text-gray-700 dark:text-gray-300">Gasolina por dia</p>
+                      <p className="text-sm text-gray-700">Gasolina por dia</p>
                     </div>
                     <div>
-                      <h3 className="text-lg font-medium text-gray-800 mb-2 dark:text-gray-200">Ganho por Hora</h3>
-                      <p className="text-2xl font-bold text-yellow-700 dark:text-yellow-400">
+                      <h3 className="text-lg font-medium text-gray-800 mb-2">Ganho por Hora</h3>
+                      <p className="text-2xl font-bold text-yellow-700">
                         {formatarDinheiro(resumos[periodoAtual].mediaGanhosHora)}
                       </p>
-                      <p className="text-sm text-gray-700 dark:text-gray-300">Por hora trabalhada</p>
+                      <p className="text-sm text-gray-700">Por hora trabalhada</p>
                     </div>
                   </div>
                 </div>
               </div>
             </>
           ) : (
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-800 shadow-md dark:bg-yellow-800 dark:border-yellow-700 dark:text-yellow-100">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-800">
               <p className="font-medium">Não há dados disponíveis para o período selecionado.</p>
               <p>Adicione corridas para visualizar as estatísticas.</p>
             </div>
           )}
 
           {!configVeiculo && (
-            <div className="mt-4 bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-800 shadow-md dark:bg-yellow-800 dark:border-yellow-700 dark:text-yellow-100">
+            <div className="mt-4 bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-800">
               <p className="font-medium">Configurações do veículo não encontradas.</p>
               <p>
                 Algumas estatísticas podem não estar precisas. 
-                <a href="/configuracoes" className="underline ml-1 font-medium text-yellow-900 dark:text-yellow-100">
+                <a href="/configuracoes" className="underline ml-1">
                   Configurar veículo
                 </a>
               </p>

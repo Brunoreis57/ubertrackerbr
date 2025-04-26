@@ -9,9 +9,6 @@
   --input-text: #171717;
   --button-primary: #374151;
   --button-text: #ffffff;
-  --shadow-normal: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-large: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .dark {
@@ -23,9 +20,6 @@
   --input-text: #f3f4f6;
   --button-primary: #4b5563;
   --button-text: #f3f4f6;
-  --shadow-normal: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-  --shadow-large: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
 @theme inline {
@@ -43,20 +37,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Garantir que os textos sejam sempre visíveis no modo claro */
-h1, h2, h3, h4, h5, h6, p, span, a, button, div {
-  color: var(--foreground);
-}
-
-/* Preservar cores específicas que não devem ser sobrescritas */
-.text-white {
-  color: #ffffff !important;
-}
-
-.text-green-700, .text-blue-700, .text-red-700, .text-yellow-700 {
-  /* Manter as cores específicas */
 }
 
 /* Estilos para cartões no modo escuro */
@@ -81,45 +61,12 @@ h1, h2, h3, h4, h5, h6, p, span, a, button, div {
   border-color: #4b5563;
 }
 
-/* Cartões de cores específicas no modo escuro */
 .dark .bg-gray-50, 
 .dark .bg-blue-50, 
 .dark .bg-green-50, 
 .dark .bg-red-50 {
-  background-color: #374151;
-}
-
-/* Garante que o fundo principal seja branco no modo claro */
-.bg-gray-100 {
-  background-color: var(--background);
-}
-
-/* Garante que o fundo escuro seja aplicado corretamente no modo escuro */
-.dark .bg-gray-900 {
-  background-color: var(--background);
-}
-
-/* Estilos para os gráficos e cartões no modo escuro */
-.dark .bg-gray-800 {
-  background-color: var(--card-bg);
-}
-
-/* Melhorar o design dos cartões com mais sombras no modo claro */
-.shadow-md {
-  box-shadow: var(--shadow-normal);
-}
-
-.shadow-lg {
-  box-shadow: var(--shadow-medium);
-}
-
-.hover\:shadow-xl:hover {
-  box-shadow: var(--shadow-large);
-}
-
-/* Adicionar bordas sutis para todos os cartões no modo claro */
-.bg-white, .bg-blue-50, .bg-green-50, .bg-red-50, .bg-yellow-50, .bg-gray-50 {
-  border: 1px solid #e5e7eb;
+  background-color: #4b5563;
+  color: white;
 }
 
 /* Estilos para campos de formulário no modo escuro */
@@ -157,4 +104,56 @@ html, body {
   html {
     font-size: 16px;
   }
+}
+
+/* Estilos específicos para gráficos no modo escuro */
+.dark .bg-white .Grafico canvas {
+  background-color: var(--card-bg);
+  border-radius: 0.5rem;
+}
+
+/* Melhorar visibilidade dos textos em diferentes áreas */
+.dark .text-gray-800,
+.dark .text-gray-900,
+.dark .text-gray-700,
+.dark .text-gray-600 {
+  color: var(--card-text);
+}
+
+/* Ajustar as cores dos cartões indicadores */
+.dark .bg-gray-50 {
+  background-color: #384152;
+}
+
+.dark .bg-blue-50 {
+  background-color: #334171;
+}
+
+.dark .bg-green-50 {
+  background-color: #31543f;
+}
+
+.dark .bg-red-50 {
+  background-color: #513339;
+}
+
+/* Ajustes para cabeçalhos de formulários */
+.dark label.text-gray-900 {
+  color: #e5e7eb !important;
+}
+
+/* Ajustes para cartões na tela inicial */
+.dark .bg-white.rounded-lg.shadow-md {
+  background-color: var(--card-bg);
+  border-color: var(--card-bg);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Melhorar o contraste dos componentes de UI no modo escuro */
+.dark button.bg-gray-900 {
+  background-color: #1e293b;
+}
+
+.dark button.hover\:bg-gray-800:hover {
+  background-color: #374151;
 }

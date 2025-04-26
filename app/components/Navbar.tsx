@@ -133,7 +133,7 @@ const Navbar = ({ children }: NavbarProps) => {
   }
 
   return (
-    <div className={`flex flex-col min-h-screen ${darkMode ? 'dark' : ''}`}>
+    <div className="flex flex-col min-h-screen">
       {/* Header fixo no topo */}
       <header className="h-16 bg-gray-900 text-white shadow-md sticky top-0 z-40 flex items-center justify-between px-4">
         <div className="flex items-center">
