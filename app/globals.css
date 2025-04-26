@@ -9,19 +9,17 @@
   --input-text: #171717;
   --button-primary: #374151;
   --button-text: #ffffff;
-  --card-light-bg: #f9fafb;
 }
 
 .dark {
   --background: #111827;
   --foreground: #f3f4f6;
-  --card-bg: #1f2937;
+  --card-bg: #2d3748;
   --card-text: #f3f4f6;
   --input-bg: #374151;
   --input-text: #f3f4f6;
   --button-primary: #4b5563;
   --button-text: #f3f4f6;
-  --card-light-bg: #2d3748;
 }
 
 @theme inline {
@@ -63,29 +61,27 @@ body {
   border-color: #4b5563;
 }
 
-/* Cards cores mais claras no tema escuro */
-.dark .bg-gray-50 {
-  background-color: #2d3748; /* Cinza mais claro no modo escuro */
-}
-
-.dark .bg-blue-50 {
-  background-color: #1e3a8a; /* Azul mais claro no modo escuro */
-}
-
-.dark .bg-green-50 {
-  background-color: #065f46; /* Verde mais claro no modo escuro */
-}
-
+/* Cartões de cores específicas no modo escuro */
+.dark .bg-gray-50, 
+.dark .bg-blue-50, 
+.dark .bg-green-50, 
 .dark .bg-red-50 {
-  background-color: #881337; /* Vermelho mais claro no modo escuro */
+  background-color: #374151;
 }
 
-.dark .bg-yellow-50 {
-  background-color: #92400e; /* Amarelo mais claro no modo escuro */
+/* Garante que o fundo principal seja branco no modo claro */
+.bg-gray-100 {
+  background-color: var(--background);
 }
 
-.dark .bg-purple-50 {
-  background-color: #581c87; /* Roxo mais claro no modo escuro */
+/* Garante que o fundo escuro seja aplicado corretamente no modo escuro */
+.dark .bg-gray-900 {
+  background-color: var(--background);
+}
+
+/* Estilos para os gráficos e cartões no modo escuro */
+.dark .bg-gray-800 {
+  background-color: var(--card-bg);
 }
 
 /* Estilos para campos de formulário no modo escuro */
