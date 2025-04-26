@@ -42,7 +42,7 @@ export interface SessaoUsuario {
 }
 
 // Tipo para período de visualização
-export type Periodo = 'diario' | 'semanal' | 'mensal' | 'anual';
+export type Periodo = 'diario' | 'semanal' | 'mensal' | 'anual' | 'ontem';
 
 // Tipo para resumo financeiro
 export interface ResumoFinanceiro {

@@ -150,6 +150,16 @@ const RelatoriosPage = () => {
             <div className="bg-white rounded-lg shadow-md p-4">
               <div className="flex flex-wrap gap-2">
                 <button
+                  onClick={() => setPeriodoAtual('ontem')}
+                  className={`px-4 py-2 rounded-lg transition-colors ${
+                    periodoAtual === 'ontem'
+                      ? 'bg-gray-800 text-white'
+                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
+                  }`}
+                >
+                  Ontem
+                </button>
+                <button
                   onClick={() => setPeriodoAtual('diario')}
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'diario'

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaHome, FaCog, FaPlus, FaTable, FaBars, FaTimes, FaChartLine, FaDatabase, FaLifeRing, FaUser, FaTaxi, FaCalculator } from 'react-icons/fa';
+import { FaHome, FaCog, FaPlus, FaTable, FaBars, FaTimes, FaChartLine, FaDatabase, FaLifeRing, FaUser, FaTaxi, FaCalculator, FaMoon, FaSun } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import AuthStatus from './AuthStatus';
 import { verificarLogin } from '../lib/authUtils';
@@ -18,6 +18,7 @@ const Navbar = ({ children }: NavbarProps) => {
   const [isMounted, setIsMounted] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [usuario, setUsuario] = useState<SessaoUsuario | null>(null);
+  const [darkMode, setDarkMode] = useState(false);
 
   // Verifica se estamos no navegador para evitar erro de hidratação
   useEffect(() => {
@@ -39,6 +40,17 @@ const Navbar = ({ children }: NavbarProps) => {
     // Adicionar listener para mudanças de tamanho de tela
     window.addEventListener('resize', checkScreenSize);
     
+    // Recuperar preferência de tema do localStorage
+    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(savedDarkMode);
+    
+    // Aplicar o tema ao body
+    if (savedDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    
     // Limpar listener ao desmontar o componente
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
@@ -58,6 +70,19 @@ const Navbar = ({ children }: NavbarProps) => {
       return () => clearInterval(intervalo);
     }
   }, [isMounted, pathname]);
+
+  // Alternar modo escuro
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem('darkMode', String(newDarkMode));
+    
+    if (newDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -108,7 +133,7 @@ const Navbar = ({ children }: NavbarProps) => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className={`flex flex-col min-h-screen ${darkMode ? 'dark' : ''}`}>
       {/* Header fixo no topo */}
       <header className="h-16 bg-gray-900 text-white shadow-md sticky top-0 z-40 flex items-center justify-between px-4">
         <div className="flex items-center">
@@ -122,7 +147,16 @@ const Navbar = ({ children }: NavbarProps) => {
           <FaTaxi size={24} className="text-white mr-3" />
           <div className="text-xl font-bold">BR UBER</div>
         </div>
-        <AuthStatus />
+        <div className="flex items-center gap-3">
+          <button
+            onClick={toggleDarkMode}
+            className="p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600 hover:bg-gray-800"
+            aria-label={darkMode ? "Mudar para modo claro" : "Mudar para modo escuro"}
+          >
+            {darkMode ? <FaSun size={22} className="text-yellow-300" /> : <FaMoon size={22} />}
+          </button>
+          <AuthStatus />
+        </div>
       </header>
 
       <div className="flex flex-1 relative">
@@ -179,7 +213,7 @@ const Navbar = ({ children }: NavbarProps) => {
         </aside>
 
         {/* Conteúdo principal */}
-        <main className="flex-1 p-4 lg:p-6 bg-gray-100">
+        <main className="flex-1 p-4 lg:p-6 bg-gray-100 dark:bg-gray-900 dark:text-white transition-colors duration-200">
           {children}
         </main>
       </div>

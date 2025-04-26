@@ -68,6 +68,9 @@ export const filtrarCorridasPorPeriodo = (corridas: Corrida[], periodo: Periodo)
     case 'anual':
       dataInicio = subYears(hoje, 1);
       break;
+    case 'ontem':
+      dataInicio = startOfDay(subDays(hoje, 1));
+      break;
     default:
       dataInicio = subDays(hoje, 30); // Padrão: último mês
   }
@@ -87,10 +90,18 @@ export const filtrarCorridasPorPeriodo = (corridas: Corrida[], periodo: Periodo)
       
       // Se for apenas YYYY-MM-DD sem a parte T
       if (corrida.data.length === 10 && !corrida.data.includes('T')) {
-        dataCorrida = new Date(`${corrida.data}T12:00:00`); // Meio-dia para evitar problemas de fuso
+        // Adicionar 12 horas (meio-dia) à data para evitar problemas de fuso horário
+        dataCorrida = new Date(`${corrida.data}T12:00:00`);
       } else {
-        // Tentar parseISO para formato ISO completo
-        dataCorrida = parseISO(corrida.data);
+        // Tentar parseISO para formato ISO completo e adicionar 12 horas
+        const parsedDate = parseISO(corrida.data);
+        // Criar nova data com meio-dia para evitar problemas de fuso
+        dataCorrida = new Date(
+          parsedDate.getFullYear(),
+          parsedDate.getMonth(),
+          parsedDate.getDate(),
+          12, 0, 0
+        );
       }
       
       // Verificar se a data é válida
@@ -99,9 +110,18 @@ export const filtrarCorridasPorPeriodo = (corridas: Corrida[], periodo: Periodo)
         return false;
       }
       
+      let inicio = dataInicio;
+      let fim = endOfDay(hoje);
+      
+      // Caso especial para "ontem"
+      if (periodo === 'ontem') {
+        inicio = startOfDay(subDays(hoje, 1));
+        fim = endOfDay(subDays(hoje, 1));
+      }
+      
       const resultado = isWithinInterval(dataCorrida, {
-        start: dataInicio,
-        end: endOfDay(hoje),
+        start: inicio,
+        end: fim,
       });
       
       if (resultado) {
