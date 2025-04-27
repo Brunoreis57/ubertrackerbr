@@ -294,27 +294,27 @@ const TabelaCorridas = ({ corridas, onEditar, onExcluir }: TabelaCorridasProps) 
               <div key={corrida.id} className="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
                 <div className="flex justify-between items-center mb-3">
                   <div className="font-medium text-gray-700">{formatarDataSegura(corrida.data)}</div>
-                  <div className="flex space-x-2">
+                  <div className="flex space-x-4">
                     <button
                       onClick={() => abrirDetalhes(corrida)}
-                      className="text-gray-700 hover:text-black"
+                      className="text-gray-700 hover:text-black bg-gray-100 p-3 rounded-full"
                       title="Ver Detalhes"
                     >
-                      <FaEye size={16} />
+                      <FaEye size={20} />
                     </button>
                     <button
                       onClick={() => onEditar(corrida)}
-                      className="text-gray-700 hover:text-black"
+                      className="text-gray-700 hover:text-black bg-gray-100 p-3 rounded-full"
                       title="Editar"
                     >
-                      <FaEdit size={16} />
+                      <FaEdit size={20} />
                     </button>
                     <button
                       onClick={() => confirmarExclusao(corrida.id)}
-                      className="text-gray-700 hover:text-black"
+                      className="text-gray-700 hover:text-black bg-gray-100 p-3 rounded-full"
                       title="Excluir"
                     >
-                      <FaTrash size={16} />
+                      <FaTrash size={20} />
                     </button>
                   </div>
                 </div>
