@@ -135,9 +135,9 @@ export default function Home() {
       </div>
 
       {!configVeiculo && (
-        <div className="mb-6 p-4 bg-gray-200 text-gray-900 border border-gray-400 rounded-md dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600">
+        <div className="mb-6 p-4 bg-white text-gray-900 border border-gray-400 rounded-md">
           <div className="flex items-start">
-            <FaCog className="mt-1 mr-3 flex-shrink-0 text-gray-700 dark:text-gray-300" />
+            <FaCog className="mt-1 mr-3 flex-shrink-0 text-gray-700" />
             <div>
               <p className="font-medium">Configurações do veículo não encontradas</p>
               <p className="mt-1">
@@ -145,7 +145,7 @@ export default function Home() {
               </p>
               <Link 
                 href="/configuracoes" 
-                className="mt-2 inline-flex items-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 text-sm font-medium dark:bg-gray-600 dark:hover:bg-gray-700"
+                className="mt-2 inline-flex items-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 text-sm font-medium"
               >
                 <FaCog className="mr-2" /> Configurar Veículo
               </Link>
@@ -155,14 +155,14 @@ export default function Home() {
       )}
 
       <div className="mb-4 sm:mb-6">
-        <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3 dark:text-gray-100">Período de Análise</h2>
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">Período de Análise</h2>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setPeriodo('ontem')}
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'ontem'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-gray-900 text-white'
+                : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-300'
             }`}
           >
             Ontem
@@ -171,8 +171,8 @@ export default function Home() {
             onClick={() => setPeriodo('diario')}
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'diario'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-gray-900 text-white'
+                : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-300'
             }`}
           >
             Hoje
@@ -181,8 +181,8 @@ export default function Home() {
             onClick={() => setPeriodo('semanal')}
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'semanal'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-gray-900 text-white'
+                : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-300'
             }`}
           >
             Última Semana
@@ -191,8 +191,8 @@ export default function Home() {
             onClick={() => setPeriodo('mensal')}
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'mensal'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-gray-900 text-white'
+                : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-300'
             }`}
           >
             Último Mês
@@ -201,8 +201,8 @@ export default function Home() {
             onClick={() => setPeriodo('anual')}
             className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
               periodo === 'anual'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-gray-900 text-white'
+                : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-300'
             }`}
           >
             Último Ano
@@ -242,12 +242,12 @@ export default function Home() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-        <div className="bg-gray-200 dark:bg-gray-900 rounded-lg shadow-md p-4 sm:p-6">
-          <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-4">Evolução de Ganhos</h2>
+        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">Evolução de Ganhos</h2>
           <Grafico tipo="linha" dados={dadosGraficoGanhos} titulo="Ganhos no Último Mês" altura={300} />
         </div>
-        <div className="bg-gray-200 dark:bg-gray-900 rounded-lg shadow-md p-4 sm:p-6">
-          <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-4">Distribuição de Gastos</h2>
+        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">Distribuição de Gastos</h2>
           <Grafico tipo="pizza" dados={dadosGraficoGastos} titulo="Gastos por Categoria" altura={300} />
         </div>
       </div>

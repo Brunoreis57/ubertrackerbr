@@ -17,12 +17,12 @@ const Card = ({
   corFundo,
   corTexto,
 }: CardProps) => {
-  // Ignorar as cores personalizadas e usar sempre o padrão (cinza)
-  const bgColorClass = "bg-gray-200 dark:bg-gray-900";
-  const textColorClass = "text-gray-900 dark:text-white";
+  // Usar fundo branco para todos os modos
+  const bgColorClass = "bg-white";
+  const textColorClass = "text-gray-900";
   
   return (
-    <div className={`${bgColorClass} rounded-lg shadow-lg p-4 sm:p-6 transition-all duration-300 hover:shadow-xl border-2 border-gray-300 dark:border-gray-800`}>
+    <div className={`${bgColorClass} rounded-lg shadow-lg p-4 sm:p-6 transition-all duration-300 hover:shadow-xl border-2 border-gray-300`}>
       <div className="flex items-center mb-3 sm:mb-4">
         <div className={`${textColorClass} mr-2 sm:mr-3 text-xl sm:text-2xl`}>{icone}</div>
         <h3 className={`${textColorClass} font-bold text-base sm:text-lg`}>{titulo}</h3>
