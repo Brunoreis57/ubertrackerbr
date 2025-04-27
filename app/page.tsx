@@ -159,50 +159,50 @@ export default function Home() {
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setPeriodo('ontem')}
-            className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
+            className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium border ${
               periodo === 'ontem'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-gray-900 text-white dark:bg-gray-700 border-gray-900 dark:border-gray-700'
+                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 border-gray-400 dark:border-gray-600'
             }`}
           >
             Ontem
           </button>
           <button
             onClick={() => setPeriodo('diario')}
-            className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
+            className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium border ${
               periodo === 'diario'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-gray-900 text-white dark:bg-gray-700 border-gray-900 dark:border-gray-700'
+                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 border-gray-400 dark:border-gray-600'
             }`}
           >
             Hoje
           </button>
           <button
             onClick={() => setPeriodo('semanal')}
-            className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
+            className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium border ${
               periodo === 'semanal'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-gray-900 text-white dark:bg-gray-700 border-gray-900 dark:border-gray-700'
+                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 border-gray-400 dark:border-gray-600'
             }`}
           >
             Última Semana
           </button>
           <button
             onClick={() => setPeriodo('mensal')}
-            className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
+            className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium border ${
               periodo === 'mensal'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-gray-900 text-white dark:bg-gray-700 border-gray-900 dark:border-gray-700'
+                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 border-gray-400 dark:border-gray-600'
             }`}
           >
             Último Mês
           </button>
           <button
             onClick={() => setPeriodo('anual')}
-            className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium ${
+            className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium border ${
               periodo === 'anual'
-                ? 'bg-gray-900 text-white dark:bg-gray-700'
-                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+                ? 'bg-gray-900 text-white dark:bg-gray-700 border-gray-900 dark:border-gray-700'
+                : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 border-gray-400 dark:border-gray-600'
             }`}
           >
             Último Ano
