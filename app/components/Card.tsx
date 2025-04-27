@@ -17,9 +17,9 @@ const Card = ({
   corFundo,
   corTexto,
 }: CardProps) => {
-  // Usar as cores personalizadas se fornecidas, caso contrário usar os padrões
-  const bgColorClass = corFundo || "bg-gray-200 dark:bg-gray-900";
-  const textColorClass = corTexto || "text-gray-900 dark:text-white";
+  // Ignorar as cores personalizadas e usar sempre o padrão (cinza)
+  const bgColorClass = "bg-gray-200 dark:bg-gray-900";
+  const textColorClass = "text-gray-900 dark:text-white";
   
   return (
     <div className={`${bgColorClass} rounded-lg shadow-lg p-4 sm:p-6 transition-all duration-300 hover:shadow-xl border-2 border-gray-300 dark:border-gray-800`}>
