@@ -151,50 +151,50 @@ const RelatoriosPage = () => {
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setPeriodoAtual('ontem')}
-                  className={`px-4 py-2 rounded-lg transition-colors border ${
+                  className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'ontem'
-                      ? 'bg-gray-800 text-white border-gray-800 dark:bg-gray-700 dark:border-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 border-gray-400 dark:border-gray-600'
+                      ? 'bg-gray-800 text-white'
+                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
                   }`}
                 >
                   Ontem
                 </button>
                 <button
                   onClick={() => setPeriodoAtual('diario')}
-                  className={`px-4 py-2 rounded-lg transition-colors border ${
+                  className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'diario'
-                      ? 'bg-gray-800 text-white border-gray-800 dark:bg-gray-700 dark:border-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 border-gray-400 dark:border-gray-600'
+                      ? 'bg-gray-800 text-white'
+                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
                   }`}
                 >
                   Diário
                 </button>
                 <button
                   onClick={() => setPeriodoAtual('semanal')}
-                  className={`px-4 py-2 rounded-lg transition-colors border ${
+                  className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'semanal'
-                      ? 'bg-gray-800 text-white border-gray-800 dark:bg-gray-700 dark:border-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 border-gray-400 dark:border-gray-600'
+                      ? 'bg-gray-800 text-white'
+                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
                   }`}
                 >
                   Semanal
                 </button>
                 <button
                   onClick={() => setPeriodoAtual('mensal')}
-                  className={`px-4 py-2 rounded-lg transition-colors border ${
+                  className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'mensal'
-                      ? 'bg-gray-800 text-white border-gray-800 dark:bg-gray-700 dark:border-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 border-gray-400 dark:border-gray-600'
+                      ? 'bg-gray-800 text-white'
+                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
                   }`}
                 >
                   Mensal
                 </button>
                 <button
                   onClick={() => setPeriodoAtual('anual')}
-                  className={`px-4 py-2 rounded-lg transition-colors border ${
+                  className={`px-4 py-2 rounded-lg transition-colors ${
                     periodoAtual === 'anual'
-                      ? 'bg-gray-800 text-white border-gray-800 dark:bg-gray-700 dark:border-gray-700'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 border-gray-400 dark:border-gray-600'
+                      ? 'bg-gray-800 text-white'
+                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
                   }`}
                 >
                   Anual
