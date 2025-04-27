@@ -121,16 +121,38 @@ const RelatoriosPage = () => {
     descricao: string,
     corFundo: string
   ) => {
+    // Determinar cores com base no título (mesma convenção do dashboard)
+    let bgColor = '';
+    let textColor = '';
+    
+    if (titulo.includes('Viagens')) {
+      bgColor = 'bg-blue-100 dark:bg-blue-900/30';
+      textColor = 'text-blue-900 dark:text-blue-100';
+    } else if (titulo.includes('Quilômetros')) {
+      bgColor = 'bg-green-100 dark:bg-green-900/30';
+      textColor = 'text-green-900 dark:text-green-100';
+    } else if (titulo.includes('Ganho Bruto')) {
+      bgColor = 'bg-green-100 dark:bg-green-900/30';
+      textColor = 'text-green-900 dark:text-green-100';
+    } else if (titulo.includes('Gasto com Gasolina')) {
+      bgColor = 'bg-red-100 dark:bg-red-900/30';
+      textColor = 'text-red-900 dark:text-red-100';
+    } else {
+      // Cor padrão para outros títulos
+      bgColor = 'bg-yellow-100 dark:bg-yellow-900/30';
+      textColor = 'text-yellow-900 dark:text-yellow-100';
+    }
+    
     return (
-      <div className={`${corFundo} rounded-lg shadow-md p-4 flex flex-col bg-gray-200 dark:bg-gray-900`}>
+      <div className={`${bgColor} rounded-lg shadow-md p-4 flex flex-col`}>
         <div className="flex items-center mb-2">
           <div className="mr-3 text-gray-900 dark:text-white">
             {icone}
           </div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{titulo}</h3>
+          <h3 className={`text-lg font-semibold ${textColor}`}>{titulo}</h3>
         </div>
-        <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{valor}</div>
-        <p className="text-sm text-gray-800 dark:text-gray-200">{descricao}</p>
+        <div className={`text-3xl font-bold ${textColor} mb-2`}>{valor}</div>
+        <p className={`text-sm ${textColor} opacity-80`}>{descricao}</p>
       </div>
     );
   };
