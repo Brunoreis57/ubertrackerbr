@@ -57,7 +57,8 @@ export const filtrarCorridasPorPeriodo = (corridas: Corrida[], periodo: Periodo)
 
   switch (periodo) {
     case 'diario':
-      dataInicio = startOfDay(hoje);
+      // Usar apenas o dia atual, sem incluir dias anteriores
+      dataInicio = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate(), 0, 0, 0);
       break;
     case 'semanal':
       dataInicio = subWeeks(hoje, 1);
@@ -119,13 +120,19 @@ export const filtrarCorridasPorPeriodo = (corridas: Corrida[], periodo: Periodo)
         fim = endOfDay(subDays(hoje, 1));
       }
       
+      // Caso especial para "diario" (hoje)
+      if (periodo === 'diario') {
+        inicio = startOfDay(hoje);
+        fim = endOfDay(hoje);
+      }
+      
       const resultado = isWithinInterval(dataCorrida, {
         start: inicio,
         end: fim,
       });
       
       if (resultado) {
-        console.log(`Corrida ${corrida.id} com data ${corrida.data} está dentro do intervalo`);
+        console.log(`Corrida ${corrida.id} com data ${corrida.data} está dentro do intervalo (${inicio.toISOString()} a ${fim.toISOString()})`);
       }
       
       return resultado;
