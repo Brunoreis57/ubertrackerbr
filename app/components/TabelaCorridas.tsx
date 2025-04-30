@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Corrida } from '../types';
-import { formatarData, formatarDinheiro } from '../lib/utils';
+import { formatarData, formatarDinheiro, criarDataPadronizada } from '../lib/utils';
 import { FaEdit, FaTrash, FaFilter, FaTimes, FaEye, FaGasPump, FaSortAmountDown, FaSortAmountUp } from 'react-icons/fa';
 
 interface TabelaCorridasProps {
@@ -39,14 +39,25 @@ const TabelaCorridas = ({ corridas, onEditar, onExcluir }: TabelaCorridasProps) 
   // Aplicar a ordenação selecionada às corridas
   const aplicarOrdenacao = (corridasParaOrdenar: Corrida[]) => {
     const corridasOrdenadas = [...corridasParaOrdenar].sort((a, b) => {
-      // Extrair apenas a parte da data se estiver em formato ISO
-      const dataA = a.data.includes('T') ? a.data.split('T')[0] : a.data;
-      const dataB = b.data.includes('T') ? b.data.split('T')[0] : b.data;
-      
-      // Ordenar baseado na direção escolhida
-      return ordenacaoRecente 
-        ? dataB.localeCompare(dataA) // Mais recentes primeiro (decrescente)
-        : dataA.localeCompare(dataB); // Mais antigas primeiro (crescente)
+      try {
+        // Criar objetos Date para comparação adequada
+        const dataA = criarDataPadronizada(a.data);
+        const dataB = criarDataPadronizada(b.data);
+        
+        // Verificar se as datas são válidas
+        if (isNaN(dataA.getTime()) || isNaN(dataB.getTime())) {
+          console.error('Datas inválidas ao ordenar:', a.data, b.data);
+          return 0;
+        }
+        
+        // Ordenar baseado na direção escolhida
+        return ordenacaoRecente 
+          ? dataB.getTime() - dataA.getTime() // Mais recentes primeiro (decrescente)
+          : dataA.getTime() - dataB.getTime(); // Mais antigas primeiro (crescente)
+      } catch (erro) {
+        console.error('Erro ao ordenar corridas:', erro);
+        return 0;
+      }
     });
     
     setCorridasFiltradas(corridasOrdenadas);
@@ -90,28 +101,38 @@ const TabelaCorridas = ({ corridas, onEditar, onExcluir }: TabelaCorridasProps) 
       console.log('Aplicando filtro de data:', filtroData);
       console.log('Total de corridas antes do filtro:', corridas.length);
 
-      const resultado = corridas.filter((corrida) => {
+      const resultado = corridas.filter(corrida => {
         try {
-          // Para simplificar a comparação, vamos comparar apenas as strings YYYY-MM-DD
-          // Se corrida.data tem formato ISO completo, extrair apenas a parte da data
-          const dataCorridaStr = corrida.data.includes('T') 
-            ? corrida.data.split('T')[0] 
-            : corrida.data;
+          if (!corrida.data) {
+            console.error('Corrida sem data:', corrida);
+            return false;
+          }
           
-          console.log(`Corrida ${corrida.id} - Data para comparação:`, dataCorridaStr);
+          // Usar a função para criar um objeto data padronizado
+          const dataCorrida = criarDataPadronizada(corrida.data);
+          
+          // Verificar se a data é válida
+          if (isNaN(dataCorrida.getTime())) {
+            console.error('Data inválida na corrida:', corrida);
+            return false;
+          }
+          
+          console.log(`Corrida ${corrida.id} - Data para comparação:`, dataCorrida.toISOString().split('T')[0]);
           
           let incluir = true;
           
           if (filtroData.inicio) {
-            // Comparação de strings no formato YYYY-MM-DD
-            incluir = incluir && dataCorridaStr >= filtroData.inicio;
-            console.log(`  - Comparando com início ${filtroData.inicio}:`, dataCorridaStr >= filtroData.inicio);
+            // Criar objeto Date para data inicial do filtro (com hora 00:00:00)
+            const dataInicio = new Date(`${filtroData.inicio}T00:00:00Z`);
+            incluir = incluir && dataCorrida >= dataInicio;
+            console.log(`  - Comparando com início ${filtroData.inicio}:`, dataCorrida >= dataInicio);
           }
           
           if (filtroData.fim) {
-            // Comparação de strings no formato YYYY-MM-DD
-            incluir = incluir && dataCorridaStr <= filtroData.fim;
-            console.log(`  - Comparando com fim ${filtroData.fim}:`, dataCorridaStr <= filtroData.fim);
+            // Criar objeto Date para data final do filtro (com hora 23:59:59)
+            const dataFim = new Date(`${filtroData.fim}T23:59:59Z`);
+            incluir = incluir && dataCorrida <= dataFim;
+            console.log(`  - Comparando com fim ${filtroData.fim}:`, dataCorrida <= dataFim);
           }
           
           return incluir;

@@ -110,11 +110,15 @@ const FormularioCorrida = ({ onSalvar, corridaParaEditar }: FormularioCorridaPro
       const id = corridaParaEditar?.id || gerarId();
       console.log('ID da corrida:', id, 'É edição?', !!corridaParaEditar);
       
-      // Corrigir problema de fuso horário adicionando "T12:00:00Z" à data
-      // para garantir que a data seja interpretada como meio-dia UTC
-      // evitando problemas com fuso horário
+      // Garantir formato ISO padronizado com hora 12:00:00 UTC
+      // para evitar problemas de fuso horário
       console.log('Data original do formulário:', dados.data);
-      const dataCorrigida = `${dados.data}T12:00:00Z`;
+      
+      // Verificar se a data já está no formato ISO completo
+      const dataCorrigida = dados.data.includes('T') 
+        ? dados.data 
+        : `${dados.data}T12:00:00Z`;
+        
       console.log('Data corrigida com fuso:', dataCorrigida);
       
       const novaCorrida: Corrida = {

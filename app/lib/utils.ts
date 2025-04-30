@@ -59,32 +59,61 @@ export const formatarDinheiro = (valor: number): string => {
   }).format(valor);
 };
 
+// Função para criar um objeto Date padronizado a partir de uma string de data
+export const criarDataPadronizada = (dataString: string): Date => {
+  try {
+    if (!dataString) {
+      throw new Error('String de data vazia');
+    }
+    
+    // Extrair apenas a parte da data (YYYY-MM-DD) para padronização
+    const apenasData = dataString.includes('T') 
+      ? dataString.split('T')[0] 
+      : dataString.substring(0, 10);
+    
+    // Criar data com meio-dia UTC para evitar problemas de fuso horário
+    return new Date(`${apenasData}T12:00:00Z`);
+  } catch (erro) {
+    console.error('Erro ao criar data padronizada:', erro, dataString);
+    return new Date(); // Retorna data atual como fallback
+  }
+};
+
 // Função para filtrar corridas por período
 export const filtrarCorridasPorPeriodo = (corridas: Corrida[], periodo: Periodo): Corrida[] => {
   const hoje = new Date();
+  const hojeNormalizado = new Date(
+    hoje.getFullYear(),
+    hoje.getMonth(),
+    hoje.getDate(),
+    12, 0, 0
+  );
+  
   let dataInicio: Date;
 
   switch (periodo) {
     case 'diario':
       dataInicio = startOfDay(hoje);
+      dataInicio.setHours(0, 0, 0, 0);
       break;
     case 'semanal':
-      dataInicio = subWeeks(hoje, 1);
+      dataInicio = subWeeks(hojeNormalizado, 1);
       break;
     case 'mensal':
-      dataInicio = subMonths(hoje, 1);
+      dataInicio = subMonths(hojeNormalizado, 1);
       break;
     case 'anual':
-      dataInicio = subYears(hoje, 1);
+      dataInicio = subYears(hojeNormalizado, 1);
       break;
     case 'ontem':
       dataInicio = startOfDay(subDays(hoje, 1));
+      dataInicio.setHours(0, 0, 0, 0);
       break;
     default:
-      dataInicio = subDays(hoje, 30); // Padrão: último mês
+      dataInicio = subDays(hojeNormalizado, 30); // Padrão: último mês
   }
 
-  console.log(`Filtrando corridas por período: ${periodo}, data início: ${dataInicio.toISOString()}, hoje: ${hoje.toISOString()}`);
+  console.log(`Filtrando corridas por período: ${periodo}, data início: ${dataInicio.toISOString()}, hoje: ${hojeNormalizado.toISOString()}`);
   console.log(`Total de corridas antes do filtro: ${corridas.length}`);
 
   return corridas.filter((corrida) => {
@@ -95,12 +124,8 @@ export const filtrarCorridasPorPeriodo = (corridas: Corrida[], periodo: Periodo)
         return false;
       }
       
-      // Extrair apenas a parte da data (YYYY-MM-DD) para comparação
-      const dataCorridaStr = corrida.data.substring(0, 10);
-      
-      // Criar objeto de data padronizado sempre com meio-dia para
-      // evitar problemas de fuso horário nas comparações
-      const dataCorrida = new Date(`${dataCorridaStr}T12:00:00Z`);
+      // Usar a função auxiliar para criar um objeto de data padronizado
+      const dataCorrida = criarDataPadronizada(corrida.data);
       
       // Verificar se a data é válida
       if (isNaN(dataCorrida.getTime())) {
@@ -108,34 +133,23 @@ export const filtrarCorridasPorPeriodo = (corridas: Corrida[], periodo: Periodo)
         return false;
       }
       
-      // Ajustar início e fim para meio-dia também para comparação consistente
-      const inicioAjustado = new Date(
-        dataInicio.getFullYear(),
-        dataInicio.getMonth(),
-        dataInicio.getDate(),
-        12, 0, 0
-      );
-      
-      let fimAjustado = new Date(
-        hoje.getFullYear(),
-        hoje.getMonth(),
-        hoje.getDate(),
-        12, 0, 0
-      );
+      // Definir o fim do período com base no caso de uso
+      let fimAjustado = new Date(hojeNormalizado);
       
       // Caso especial para "ontem"
       if (periodo === 'ontem') {
-        inicioAjustado.setHours(0, 0, 0, 0);
-        fimAjustado = new Date(
-          subDays(hoje, 1).getFullYear(),
-          subDays(hoje, 1).getMonth(),
-          subDays(hoje, 1).getDate(),
-          23, 59, 59
-        );
+        // Para "ontem", o período começa às 00:00 e termina às 23:59:59 do mesmo dia
+        const ontem = subDays(hoje, 1);
+        dataInicio = new Date(ontem.getFullYear(), ontem.getMonth(), ontem.getDate(), 0, 0, 0);
+        fimAjustado = new Date(ontem.getFullYear(), ontem.getMonth(), ontem.getDate(), 23, 59, 59);
+      } else if (periodo === 'diario') {
+        // Para "diario", o período é de 00:00 a 23:59:59 de hoje
+        fimAjustado = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate(), 23, 59, 59);
       }
       
+      // Verificar se a data da corrida está dentro do intervalo
       const resultado = isWithinInterval(dataCorrida, {
-        start: inicioAjustado,
+        start: dataInicio,
         end: fimAjustado,
       });
       
