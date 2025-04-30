@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Corrida } from '../types';
 import { formatarData, formatarDinheiro } from '../lib/utils';
-import { FaEdit, FaTrash, FaFilter, FaTimes, FaEye, FaGasPump } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaFilter, FaTimes, FaEye, FaGasPump, FaSortAmountDown, FaSortAmountUp } from 'react-icons/fa';
 
 interface TabelaCorridasProps {
   corridas: Corrida[];
@@ -20,6 +20,7 @@ const TabelaCorridas = ({ corridas, onEditar, onExcluir }: TabelaCorridasProps) 
   });
   const [corridasFiltradas, setCorridasFiltradas] = useState<Corrida[]>(corridas);
   const [filtroAplicado, setFiltroAplicado] = useState(false);
+  const [ordenacaoRecente, setOrdenacaoRecente] = useState(true); // true = mais recentes primeiro, false = mais antigas primeiro
 
   // Atualizar corridas filtradas quando as corridas originais mudarem
   useEffect(() => {
@@ -31,9 +32,31 @@ const TabelaCorridas = ({ corridas, onEditar, onExcluir }: TabelaCorridasProps) 
       aplicarFiltro();
     } else {
       console.log('Atualizando lista sem filtro');
-      setCorridasFiltradas(corridas);
+      aplicarOrdenacao(corridas);
     }
   }, [corridas]);
+
+  // Aplicar a ordenação selecionada às corridas
+  const aplicarOrdenacao = (corridasParaOrdenar: Corrida[]) => {
+    const corridasOrdenadas = [...corridasParaOrdenar].sort((a, b) => {
+      // Extrair apenas a parte da data se estiver em formato ISO
+      const dataA = a.data.includes('T') ? a.data.split('T')[0] : a.data;
+      const dataB = b.data.includes('T') ? b.data.split('T')[0] : b.data;
+      
+      // Ordenar baseado na direção escolhida
+      return ordenacaoRecente 
+        ? dataB.localeCompare(dataA) // Mais recentes primeiro (decrescente)
+        : dataA.localeCompare(dataB); // Mais antigas primeiro (crescente)
+    });
+    
+    setCorridasFiltradas(corridasOrdenadas);
+  };
+
+  // Alternar entre ordenação crescente e decrescente
+  const alternarOrdenacao = () => {
+    setOrdenacaoRecente(!ordenacaoRecente);
+    aplicarOrdenacao(corridasFiltradas);
+  };
 
   const confirmarExclusao = (id: string) => {
     setCorridaParaExcluir(id);
@@ -58,7 +81,7 @@ const TabelaCorridas = ({ corridas, onEditar, onExcluir }: TabelaCorridasProps) 
 
   const aplicarFiltro = () => {
     if (!filtroData.inicio && !filtroData.fim) {
-      setCorridasFiltradas(corridas);
+      aplicarOrdenacao(corridas);
       setFiltroAplicado(false);
       return;
     }
@@ -99,11 +122,12 @@ const TabelaCorridas = ({ corridas, onEditar, onExcluir }: TabelaCorridasProps) 
       });
       
       console.log('Total de corridas após filtro:', resultado.length);
-      setCorridasFiltradas(resultado);
+      // Aplicar a ordenação às corridas filtradas
+      aplicarOrdenacao(resultado);
       setFiltroAplicado(true);
     } catch (erro) {
       console.error('Erro ao aplicar filtro:', erro);
-      setCorridasFiltradas(corridas);
+      aplicarOrdenacao(corridas);
     }
   };
 
@@ -129,7 +153,24 @@ const TabelaCorridas = ({ corridas, onEditar, onExcluir }: TabelaCorridasProps) 
       <h2 className="text-2xl font-bold mb-6 text-gray-900">Corridas Registradas</h2>
 
       <div className="bg-gray-50 p-4 rounded-lg mb-6">
-        <h3 className="text-lg font-medium text-gray-900 mb-3">Filtrar por Período</h3>
+        <div className="flex justify-between items-center mb-3">
+          <h3 className="text-lg font-medium text-gray-900">Filtrar por Período</h3>
+          <button
+            onClick={alternarOrdenacao}
+            className="px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 flex items-center"
+            title={ordenacaoRecente ? "Mostrar mais antigas primeiro" : "Mostrar mais recentes primeiro"}
+          >
+            {ordenacaoRecente ? (
+              <>
+                <FaSortAmountDown className="mr-2" /> Mais recentes primeiro
+              </>
+            ) : (
+              <>
+                <FaSortAmountUp className="mr-2" /> Mais antigas primeiro
+              </>
+            )}
+          </button>
+        </div>
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1">
             <label htmlFor="dataInicio" className="block text-sm font-medium text-gray-900 mb-1">
@@ -185,6 +226,24 @@ const TabelaCorridas = ({ corridas, onEditar, onExcluir }: TabelaCorridasProps) 
         </div>
       ) : (
         <>
+          {/* Botão de ordenação para dispositivos móveis */}
+          <div className="md:hidden mb-4">
+            <button
+              onClick={alternarOrdenacao}
+              className="w-full px-4 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 flex items-center justify-center"
+            >
+              {ordenacaoRecente ? (
+                <>
+                  <FaSortAmountDown className="mr-2" /> Mais recentes primeiro
+                </>
+              ) : (
+                <>
+                  <FaSortAmountUp className="mr-2" /> Mais antigas primeiro
+                </>
+              )}
+            </button>
+          </div>
+
           {/* Versão para desktop */}
           <div className="hidden md:block overflow-x-auto rounded-lg border border-gray-200">
             <table className="min-w-full divide-y divide-gray-200">
