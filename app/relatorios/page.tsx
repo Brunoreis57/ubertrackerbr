@@ -68,7 +68,7 @@ const RelatoriosPage = () => {
   };
 
   const calcularResumos = () => {
-    const periodos: Periodo[] = ['diario', 'semanal', 'mensal', 'anual'];
+    const periodos: Periodo[] = ['diario', 'semanal', 'mensal', 'anual', 'ontem'];
     const resumosCalculados = {} as {
       [key in Periodo]: {
         totalCorridas: number;
