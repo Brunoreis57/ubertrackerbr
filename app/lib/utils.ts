@@ -22,8 +22,17 @@ export const formatarData = (data: string | Date, formatoSaida: string = 'dd/MM/
     if (data instanceof Date) {
       dataObj = data;
     } else {
-      // Tentar converter string para Date
-      dataObj = new Date(data);
+      // Para consistência, se for string, primeiro extrair a parte YYYY-MM-DD
+      // e então criar um objeto Date com hora fixa (meio-dia UTC)
+      if (typeof data === 'string') {
+        // Extrair a parte da data (funciona para ISO completo ou YYYY-MM-DD)
+        const apenasData = data.includes('T') ? data.split('T')[0] : data.substring(0, 10);
+        // Criar data com meio-dia UTC para evitar problemas de fuso horário
+        dataObj = new Date(`${apenasData}T12:00:00Z`);
+      } else {
+        // Tenta converter diretamente
+        dataObj = new Date(data);
+      }
     }
     
     // Verificar se a data é válida
@@ -57,8 +66,7 @@ export const filtrarCorridasPorPeriodo = (corridas: Corrida[], periodo: Periodo)
 
   switch (periodo) {
     case 'diario':
-      // Usar apenas o dia atual, sem incluir dias anteriores
-      dataInicio = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate(), 0, 0, 0);
+      dataInicio = startOfDay(hoje);
       break;
     case 'semanal':
       dataInicio = subWeeks(hoje, 1);
@@ -81,29 +89,18 @@ export const filtrarCorridasPorPeriodo = (corridas: Corrida[], periodo: Periodo)
 
   return corridas.filter((corrida) => {
     try {
-      // Lidar com diferentes formatos de data
-      let dataCorrida: Date;
-      
+      // Lidar com diferentes formatos de data de forma mais robusta
       if (!corrida.data) {
         console.error('Corrida sem data:', corrida);
         return false;
       }
       
-      // Se for apenas YYYY-MM-DD sem a parte T
-      if (corrida.data.length === 10 && !corrida.data.includes('T')) {
-        // Adicionar 12 horas (meio-dia) à data para evitar problemas de fuso horário
-        dataCorrida = new Date(`${corrida.data}T12:00:00`);
-      } else {
-        // Tentar parseISO para formato ISO completo e adicionar 12 horas
-        const parsedDate = parseISO(corrida.data);
-        // Criar nova data com meio-dia para evitar problemas de fuso
-        dataCorrida = new Date(
-          parsedDate.getFullYear(),
-          parsedDate.getMonth(),
-          parsedDate.getDate(),
-          12, 0, 0
-        );
-      }
+      // Extrair apenas a parte da data (YYYY-MM-DD) para comparação
+      const dataCorridaStr = corrida.data.substring(0, 10);
+      
+      // Criar objeto de data padronizado sempre com meio-dia para
+      // evitar problemas de fuso horário nas comparações
+      const dataCorrida = new Date(`${dataCorridaStr}T12:00:00Z`);
       
       // Verificar se a data é válida
       if (isNaN(dataCorrida.getTime())) {
@@ -111,28 +108,39 @@ export const filtrarCorridasPorPeriodo = (corridas: Corrida[], periodo: Periodo)
         return false;
       }
       
-      let inicio = dataInicio;
-      let fim = endOfDay(hoje);
+      // Ajustar início e fim para meio-dia também para comparação consistente
+      const inicioAjustado = new Date(
+        dataInicio.getFullYear(),
+        dataInicio.getMonth(),
+        dataInicio.getDate(),
+        12, 0, 0
+      );
+      
+      let fimAjustado = new Date(
+        hoje.getFullYear(),
+        hoje.getMonth(),
+        hoje.getDate(),
+        12, 0, 0
+      );
       
       // Caso especial para "ontem"
       if (periodo === 'ontem') {
-        inicio = startOfDay(subDays(hoje, 1));
-        fim = endOfDay(subDays(hoje, 1));
-      }
-      
-      // Caso especial para "diario" (hoje)
-      if (periodo === 'diario') {
-        inicio = startOfDay(hoje);
-        fim = endOfDay(hoje);
+        inicioAjustado.setHours(0, 0, 0, 0);
+        fimAjustado = new Date(
+          subDays(hoje, 1).getFullYear(),
+          subDays(hoje, 1).getMonth(),
+          subDays(hoje, 1).getDate(),
+          23, 59, 59
+        );
       }
       
       const resultado = isWithinInterval(dataCorrida, {
-        start: inicio,
-        end: fim,
+        start: inicioAjustado,
+        end: fimAjustado,
       });
       
       if (resultado) {
-        console.log(`Corrida ${corrida.id} com data ${corrida.data} está dentro do intervalo (${inicio.toISOString()} a ${fim.toISOString()})`);
+        console.log(`Corrida ${corrida.id} com data ${corrida.data} (${dataCorrida.toISOString()}) está dentro do intervalo`);
       }
       
       return resultado;

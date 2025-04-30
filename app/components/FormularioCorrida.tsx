@@ -89,8 +89,6 @@ const FormularioCorrida = ({ onSalvar, corridaParaEditar }: FormularioCorridaPro
       console.log('Dados do formulário recebidos:', dados);
       
       // Garantir que a data seja válida e preservar o dia correto
-      // Usar a data diretamente do input sem converter para objeto Date
-      // para evitar problemas de fuso horário
       if (!dados.data) {
         setMensagem({
           tipo: 'erro',
@@ -112,14 +110,18 @@ const FormularioCorrida = ({ onSalvar, corridaParaEditar }: FormularioCorridaPro
       const id = corridaParaEditar?.id || gerarId();
       console.log('ID da corrida:', id, 'É edição?', !!corridaParaEditar);
       
-      // Usar a data exata do formulário (YYYY-MM-DD) sem manipulação
-      console.log('Data exata do formulário:', dados.data);
+      // Corrigir problema de fuso horário adicionando "T12:00:00Z" à data
+      // para garantir que a data seja interpretada como meio-dia UTC
+      // evitando problemas com fuso horário
+      console.log('Data original do formulário:', dados.data);
+      const dataCorrigida = `${dados.data}T12:00:00Z`;
+      console.log('Data corrigida com fuso:', dataCorrigida);
       
       const novaCorrida: Corrida = {
         id: id,
         ...dadosConvertidos,
         gastoGasolina: gastoGasolinaCalculado,
-        data: dados.data, // Usar a data exatamente como foi inserida no formulário
+        data: dataCorrigida, // Usar data com hora fixa para evitar problemas de fuso
       };
 
       console.log('Corrida processada antes de salvar:', novaCorrida);
